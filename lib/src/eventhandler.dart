@@ -1,11 +1,9 @@
-
 import 'event_base.dart';
 
 ///Event handler that execute multiple callback function.
 ///
 ///It is implemented with a Singleton pattern and is called executing its factory constructor.
 class EventHandler {
-
   static EventHandler _singleton;
 
   EventHandler._internal();
@@ -52,7 +50,6 @@ class EventHandler {
     controllers[T]?.forEach((funcCallback) => funcCallback(data));
     return this;
   }
-
 
   ///Unsubscribe to event
   ///
