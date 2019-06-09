@@ -13,7 +13,7 @@ class EventHandler {
     return _singleton;
   }
 
-  Map<Type, List<Function>> controllers = {};
+  Map<Type, List<Function>> events = {};
 
   ///Subscribe the function to event
   ///
@@ -27,16 +27,16 @@ class EventHandler {
       return this;
     }
 
-    if (!controllers.containsKey(T)) {
-      controllers[T] = List<Function(T)>();
+    if (!events.containsKey(T)) {
+      events[T] = List<Function(T)>();
     }
 
-    if (controllers[T].contains(callback)) {
+    if (events[T].contains(callback)) {
       print("Already subscribed to the event: $T");
       return this;
     }
 
-    controllers[T].add(callback);
+    events[T].add(callback);
 
     return this;
   }
@@ -47,7 +47,7 @@ class EventHandler {
   ///
   ///Returns the instance of the eventhandler to send multiple events
   EventHandler send<T extends EventBase>(T data) {
-    controllers[T]?.forEach((funcCallback) => funcCallback(data));
+    events[T]?.forEach((funcCallback) => funcCallback(data));
     return this;
   }
 
@@ -57,7 +57,7 @@ class EventHandler {
   ///
   ///Returns the instance of the eventhandler for multiple unsubscriptions.
   EventHandler unsubscribe<T extends EventBase>(void Function(T) callback) {
-    if (controllers.containsKey(T)) controllers[T].remove(callback);
+    if (events.containsKey(T)) events[T].remove(callback);
     return this;
   }
 }

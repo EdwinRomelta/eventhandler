@@ -1,5 +1,5 @@
 # EventHandler for dart
-EventHandler Singleton for Dart
+Simple event handler with singleton constructor. An event is associated with each type of object that it inherits from EventBase.
 
 ## Examples
 
