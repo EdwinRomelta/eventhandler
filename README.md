@@ -34,7 +34,7 @@ EventHandler Singleton for Dart
     )
 ```            
             
-### Eemember to subscribe to the event
+### Remember unsubscribe to the event
 ```dart
     @override
     void dispose() {

@@ -1,6 +1,6 @@
 name: eventhandler
-description: Event handler for Dart
-version: 1.0.0
+description: Eventhandler for Dart
+version: 1.0.1
 author: Daniel Íñigo Pérez <daniel.inigo.dev@gmail.com>
 homepage: https://gitlab.com/daniel.inigo/dart-eventhandler
 
