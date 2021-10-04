@@ -4,13 +4,12 @@ import 'event_base.dart';
 ///
 ///It is implemented with a Singleton pattern and is called executing its factory constructor.
 class EventHandler {
-  static EventHandler _singleton;
+  static EventHandler? _singleton;
 
   EventHandler._internal();
 
   factory EventHandler() {
-    if (_singleton == null) _singleton = EventHandler._internal();
-    return _singleton;
+    return _singleton ??= EventHandler._internal();
   }
 
   Map<Type, List<Function>> events = {};
@@ -28,15 +27,15 @@ class EventHandler {
     }
 
     if (!events.containsKey(T)) {
-      events[T] = List<Function(T)>();
+      events[T] = List.empty(growable: true);
     }
 
-    if (events[T].contains(callback)) {
+    if (events[T]?.contains(callback) == true) {
       print("Already subscribed to the event: $T");
       return this;
     }
 
-    events[T].add(callback);
+    events[T]?.add(callback);
 
     return this;
   }
@@ -57,7 +56,7 @@ class EventHandler {
   ///
   ///Returns the instance of the eventhandler for multiple unsubscriptions.
   EventHandler unsubscribe<T extends EventBase>(void Function(T) callback) {
-    if (events.containsKey(T)) events[T].remove(callback);
+    if (events.containsKey(T)) events[T]!.remove(callback);
     return this;
   }
 }
